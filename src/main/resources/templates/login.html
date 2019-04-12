@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+
+    <th:block th:replace="fragments/bootstrapheader :: bootstrap"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/bootstrapheader :: jquery"></th:block>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div class="wrapper">
+        <div class="container">
+    <div th:if="${param.error}">
+    Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+    You have been logged out.
+    </div>
+
+        <form th:action="@{/login}" method="post">
+            <table>
+                    <tr>
+                        <td> Username: </td>
+
+                        <td><div th:class="(${param.error}) ? 'form-group has-error has-feedback': 'form-group'">
+                                <input type="text" name="username"  class="form-control"/>
+                            </div></td>
+                    </tr>
+                    <tr>
+                        <td> Password:</td>
+                        <td><div th:class="(${param.error}) ? 'form-group has-error has-feedback': 'form-group'">
+                            <input type="password" name="password"  class="form-control"/>
+                        </div></td>
+                    </tr>
+
+            <tr>
+                <td><div>
+                <button type="submit" class="btn btn-round btn-info" data-toggle="morphing" data-rotation-color="azure" value="Sign In">Sign In</button>
+            </div></td>
+            </tr>
+            </table>
+        </form>
+    </div>
+    </div>
+</body>
+</html>
